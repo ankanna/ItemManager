@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="add">dodaj</entry>
+    <entry key="changeLanguage">Zmień język</entry>
+    <entry key="menu">Menu główne</entry>
+    <entry key="myItems">Moje przedmioty</entry>
+</properties>
