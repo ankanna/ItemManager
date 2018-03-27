@@ -8,12 +8,12 @@
     <properties/>
     <border type="none"/>
     <children>
-      <component id="bba84" class="javax.swing.JLabel">
+      <component id="bba84" class="javax.swing.JLabel" binding="chooseLngLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Choose your language:"/>
+          <text value=""/>
         </properties>
       </component>
       <component id="c8109" class="javax.swing.JButton" binding="startButton">

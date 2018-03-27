@@ -6,21 +6,40 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.util.Locale;
 
 public class LanguageWindow extends JFrame {
 
     private JButton startButton;
     private JPanel panel1;
     private JComboBox languageComboBox;
+    private JLabel chooseLngLabel;
     private LanguageChoice languageChoice;
     private JFrame mainMenu;
+    private String language;
+
+    public String getLanguage() {
+
+        return language;
+    }
 
     public LanguageChoice getLanguageChoice() {
         return languageChoice;
     }
 
-    public LanguageWindow() {
-        panel1.setPreferredSize(new Dimension(300, 250));
+    public LanguageWindow(String language) {
+
+        this.setTitle("Item Manager");
+
+        languageChoice = new LanguageChoice(language);
+        chooseLngLabel.setText(languageChoice.setLabelText("chooseLng"));
+
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(dimension.width/3, dimension.height/3);
+        this.setLocation(dimension.width / 2 - this.getSize().width / 2, dimension.height / 2 - this.getSize().height);
+
+        panel1.setPreferredSize(new Dimension(dimension.width/3, dimension.height/3));
         add(panel1);
         languageComboBox.addItem("English");
         languageComboBox.addItem("Polski");
@@ -29,19 +48,11 @@ public class LanguageWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
 
-        languageChoice = new LanguageChoice("en");
-
-
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //   getContentPane().removeAll();
-                mainMenu = new MainMenu(languageChoice);
+                mainMenu = new MainMenu();
                 setVisible(false);
-//                panel1.setPreferredSize(new Dimension(300, 250));
-//                add(panel1);
-//                revalidate();
-//                pack();
             }
         });
         languageComboBox.addActionListener(new ActionListener() {
@@ -51,29 +62,36 @@ public class LanguageWindow extends JFrame {
 
                 switch (language) {//check for a match
                     case "English":
-
-
+                        language = "en";
+                        languageChoice = new LanguageChoice(language);
                         break;
-                    case "Polski":
-                        languageChoice = new LanguageChoice("pl");
 
+                    case "Polski":
+                        language = "pl";
+                        languageChoice = new LanguageChoice(language);
 
                         break;
                     case "Deutch":
-                        languageChoice = new LanguageChoice("de");
+                        language = "de";
+                        languageChoice = new LanguageChoice(language);
 
                         break;
                     default:
+                        language = "en";
+                        languageChoice = new LanguageChoice(language);
 
                         break;
 
                 }
+                MainMenu.setLanguage(language);
             }
+        });
+        languageComboBox.addFocusListener(new FocusAdapter() {
         });
     }
 
     public static void main(String[] args) {
-        LanguageWindow window = new LanguageWindow();
+        LanguageWindow window = new LanguageWindow("en");
     }
 
 }
